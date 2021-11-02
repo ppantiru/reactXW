@@ -14,7 +14,8 @@ export default function App() {
       <div className='reactContainer'>
         <Router>
           <Route exact path="/xwiki/bin/view/:space/:page">
-            <XMLPage />
+            <h1><XMLPage title='title'/></h1>
+            <i><XMLPage title='author'/></i>
             <XPage />
           </Route>
           <Route exact path="/xwiki/bin/view/:space/">
