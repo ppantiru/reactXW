@@ -13,7 +13,7 @@ const usePathGen = (base, spaces, page, rest) => {
   spaceList.forEach(element => {
     spaceJam = spaceJam + element;
   });
-  url = url + spaceJam + leaf;
+  url = url + spaceJam + 'pages/' +leaf;
   return [url];
 };
 

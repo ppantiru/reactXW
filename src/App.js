@@ -2,12 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import {XPage} from './components/XPage';
 import { XMLPage } from './components/XMLPage';
-import { BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route, useLocation} from 'react-router-dom'
 import usePathGen from './components/usePathGen';
 
 export default function App() {
-  const gpath = usePathGen('/xwiki/bin/view/',['Sandbox','space1','space2'],'WebHome',false);
-  
+  const location = useLocation();
+  const gpath = usePathGen('/xwiki/rest/wikis/xwiki/',['Sandbox','space1','space2'],'WebHome',true);
   return (
     <div className="App">
       <header className="App-header">
@@ -15,16 +15,12 @@ export default function App() {
       </header>
       <div className='reactContainer'>
         <Router>
-          <Route exact path="/xwiki/bin/view/:space/:page">
-            <h1><XMLPage title='title'/></h1>
-            <XPage />
-            <p>{gpath}</p>
-          </Route>
-          <Route exact path="/xwiki/bin/view/:space/">
-            <XPage />
+          <Route >
+            <XPage location={`${location.pathname}`} />
           </Route>
           <Route exact path="/xml/:space/:page">
-            <XMLPage />
+            <p>This is xml</p>
+            <XMLPage xmlLocation={gpath}/>
           </Route>
         </Router>
       </div>

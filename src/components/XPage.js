@@ -1,12 +1,10 @@
 import useFetch from './useFetch';
 import parse, { domToReact } from 'html-react-parser';
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-const XPage = () => {
-  const {space, page} = useParams()
-  const [data] = useFetch(`/xwiki/bin/get/${space}/${page ? page : 'WebHome'}`);
-  const pageContent = data;
-  return parseWithLinks(`${pageContent}`);
+const XPage = (props) => {
+  const [data] = useFetch(props.location);
+  return parseWithLinks(`${data}`);
 };
 
   function parseWithLinks(text) {
