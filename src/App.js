@@ -3,8 +3,10 @@ import './App.css';
 import {XPage} from './components/XPage';
 import { XMLPage } from './components/XMLPage';
 import { BrowserRouter as Router, Route} from 'react-router-dom'
+import usePathGen from './components/usePathGen';
 
 export default function App() {
+  const gpath = usePathGen('/xwiki/bin/view/',['Sandbox','space1','space2'],'WebHome',false);
   
   return (
     <div className="App">
@@ -15,8 +17,8 @@ export default function App() {
         <Router>
           <Route exact path="/xwiki/bin/view/:space/:page">
             <h1><XMLPage title='title'/></h1>
-            <i><XMLPage title='author'/></i>
             <XPage />
+            <p>{gpath}</p>
           </Route>
           <Route exact path="/xwiki/bin/view/:space/">
             <XPage />
